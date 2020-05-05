@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% load bootstrap4 %}
+    <br />
+    <form action="" method="get" class="form form-inline" id="filter_form">
+        {% bootstrap_form filter.form layout='inline' %}
+        <div class="btn-group">
+            {% bootstrap_button 'Search' button_class="btn btn-primary"%}
+            &nbsp; &nbsp;
+            {% bootstrap_button 'Clear Filters' button_class='btn btn-primary clear' id="clear_filters" %}
+        </div>
+    </form>
+    <p></p>
+    {% if table.data|length > 0 %}
+        {% load render_table from django_tables2 %}
+        {% render_table table %}
+    {% else %}
+        <h1>No Location Available</h1>
+    {% endif %}
+{% endblock %}
